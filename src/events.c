@@ -20,7 +20,7 @@ KITY_API int kity_get_next_event(kity_window_t *KITY_RESTRICT window,
 	if (!window || !event)
 		return KITY_ERROR_INVALID_ARGUMENT;
 
-	return wgetch(((struct kity_window_s *)(window))->handle);
+	event-> = wgetch(((struct kity_window_s *)(window))->handle);
 }
 
 KITY_API int kity_unget_event(kity)
