@@ -8,13 +8,15 @@
 KITY_BEGIN_DECLS
 
 #define KITY_SIZEOF_KITY_WINDOW (64U)
+#define KITY_SIZEOF_KITY_SCREEN (16U)
 
 typedef enum kity_fnret
 {
 	KITY_SUCCESS = 0,
 	KITY_ERROR_FAILURE = -1,
 	KITY_ERROR_OUT_OF_MEMORY = -2,
-	KITY_ERROR_INVALID_ARGUMENT = -3
+	KITY_ERROR_INVALID_ARGUMENT = -3,
+	KITY_ERROR_OUT_OF_BOUNDS = -4
 } kity_fnret_t;
 
 typedef enum kity_align
@@ -49,11 +51,18 @@ typedef struct kity_window
 	_Alignas(void *) uint8_t size[KITY_SIZEOF_KITY_WINDOW];
 } kity_window_t;
 
+typedef struct kity_screen
+{
+	_Alignas(void *) uint8_t size[KITY_SIZEOF_KITY_SCREEN];
+} kity_screen_t;
+
 union kity_layout
 {
 	struct
 	{
 		kity_align_t w_align;
+		uint16_t off_x;
+		uint16_t off_y;
 	} manual;
 	struct
 	{
@@ -76,9 +85,17 @@ struct kity_border_info
 	uint16_t bottomright;
 };
 
+typedef enum kity_event_type
+{
+	KITY_EVENT_UNKNOWN = 0,
+	KITY_EVENT_KEY = 1,
+	KITY_EVENT_BUTTON = 2
+} kity_event_type_t;
+
 struct kity_event
 {
 	kity_window_t *window;
+	kity_event_type_t type;
 	union
 	{
 		struct

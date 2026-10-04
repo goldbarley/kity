@@ -6,7 +6,7 @@
 
 #include <stdint.h>
 
-#include <ncurses.h>
+#include <curses.h>
 
 KITY_BEGIN_DECLS
 
@@ -18,12 +18,17 @@ struct kity_window_s
 	uint16_t height;
 	kity_layout_mode_t layoutmode;
 	union kity_layout layout;
-	kity_align_t t_align;
 	uint16_t x;
 	uint16_t y;
 	kity_bool_t derived;
 };
 KITY_ASSERT_SIZE_N_ALIGNMENT(struct kity_window_s,  kity_window_t);
+
+struct kity_screen_s
+{
+	SCREEN *handle;
+};
+KITY_ASSERT_SIZE_N_ALIGNMENT(struct kity_screen_s, kity_screen_t);
 
 KITY_END_DECLS
 

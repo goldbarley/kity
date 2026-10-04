@@ -5,6 +5,7 @@
 
 KITY_BEGIN_DECLS
 
+#include "events.h"
 #include "types.h"
 #include "window.h"
 

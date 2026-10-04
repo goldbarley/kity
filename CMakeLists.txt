@@ -40,6 +40,8 @@ target_include_directories(${PROJECT_NAME} PUBLIC
 	${CURSES_INCLUDE_DIRS})
 
 target_sources(${PROJECT_NAME} PRIVATE
-	${CMAKE_CURRENT_SOURCE_DIR}/src/window.c)
+	${CMAKE_CURRENT_SOURCE_DIR}/src/events.c
+	${CMAKE_CURRENT_SOURCE_DIR}/src/window.c
+	${CMAKE_CURRENT_SOURCE_DIR}/src/screen.c)
 
 target_link_libraries(${PROJECT_NAME} PRIVATE ${CURSES_LIBRARIES})
